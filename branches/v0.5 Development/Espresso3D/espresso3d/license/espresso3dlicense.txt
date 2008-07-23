@@ -1,0 +1,13 @@
+Espresso3D License:  http://www.espresso3d.com
+====================================
+
+Espresso3D(E3D) is released under the GNU Lesser General Public License.
+
+E3D was original developed between October, 2004 and April, 2008 by 
+Curtis Moxley (espresso@espresso3d.com, cmoxley@gmail.com).  As of 
+April  8, 2008 E3D was released under the LGPL.  
+
+Source code contributions can be made at http://code.google.com/p/espresso3d.  
+The project’s homepage can be found at http://www.espresso3d.com.
+
+This license file, unmodified, must be included in all derivative works of Espresso3D.

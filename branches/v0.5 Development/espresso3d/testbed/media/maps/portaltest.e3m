@@ -1,0 +1,177 @@
+TEXTURESET espresso3d\testbed\media\textures\textureseta.txt NOJAR
+SECTOR sector0
+{
+  TRIANGLE 
+  {
+    VERTICES
+      -2 -2 0, -2 2 0, -1 2 0;
+    TEXTURE 
+      0 0, 0 1, 1 1, WALL;
+  }
+  
+  PORTAL FAST portal1
+  {
+    VERTICES
+	 -1 -1 0, -1 1 0, 1 1 0, 1 -1 0;
+    PORTALLINK
+     sector1 portal1;
+  }
+  
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      0.0 0.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      10.0 0.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      20.0 0.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      30.0 0.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+  POSITION
+      40.0 0.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      50.0 0.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      60.0 0.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      10.0 10.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      20.0 10.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      30.0 10.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+   PARTICLESYSTEM FIRE
+  {
+    POSITION
+      50.0 10.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  }
+  PARTICLESYSTEM FIRE
+  {
+    POSITION
+      60.0 10.0 0.0;
+    FORWARD
+     0.0 1.0 0.0;
+    UP
+     0.0 0.0 1.0;
+  } 
+  
+
+}
+
+SECTOR sector1
+{
+  TRIANGLE 
+  {
+    VERTICES
+      -6 -6 5, -6 6 5, 6 6 5;
+    TEXTURE 
+      0 0, 0 1, 1 1, PADDLE;
+  }
+
+  PORTAL FAST portal1
+  {
+    VERTICES
+      -1 -1 0, -1 1 0, 1 1 0, 1 -1 0;
+    PORTALLINK
+     sector0, portal1;
+  }
+  
+  PORTAL FAST portal2
+  {
+    VERTICES
+      -1 -1 6, -1 1 6, 1 1 6, 1 -1 6;
+    PORTALLINK
+     sector2, portal1;
+  }
+}
+
+SECTOR sector2
+{
+  TRIANGLE 
+  {
+    VERTICES
+      -10 -10 10, -10 10 10, 10 10 10;
+    TEXTURE
+     0 0, 0 1, 1 1, PADDLE;
+  }
+  
+  PORTAL FAST portal1
+  {
+    VERTICES
+      -1 -1 6, -1 1 6, 1 1 6, 1 -1 6;
+    PORTALLINK
+     sector1, portal2;
+  }  
+}
