@@ -1,0 +1,4 @@
+APPLAUSE /espresso3d/engine/logo/sounds/applause.wav;
+EXPLOSION /espresso3d/engine/logo/sounds/explosion.wav;
+LASER /espresso3d/engine/logo/sounds/laser.wav;
+MONSTERGROWL /espresso3d/engine/logo/sounds/monstergrowl.wav;

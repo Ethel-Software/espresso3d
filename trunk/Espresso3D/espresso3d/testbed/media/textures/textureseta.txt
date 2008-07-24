@@ -1,0 +1,13 @@
+WALL espresso3d/testbed/media/textures/wall.PNG;
+BALL espresso3d/testbed/media/textures/ball.PNG;
+PADDLE espresso3d/testbed/media/textures/paddle.PNG;
+WATER espresso3d/testbed/media/textures/water.PNG;
+FIRE espresso3d/testbed/media/textures/fire.PNG;
+FONTA espresso3d/testbed/media/textures/fonta.PNG;
+TESTIMG espresso3d/testbed/media/textures/testimg.png;
+FONTARIAL espresso3d/testbed/media/textures/arialbold.png;
+FONTVERDANA espresso3d/testbed/media/textures/verdanabold.png;
+SPEAKER espresso3d/testbed/media/textures/speaker.png;
+RECEIVER espresso3d/testbed/media/textures/receiver.png;
+ORANGE espresso3d/testbed/media/textures/orange.png;
+TERRAIN espresso3d/testbed/media/textures/heightmaptexture.png;

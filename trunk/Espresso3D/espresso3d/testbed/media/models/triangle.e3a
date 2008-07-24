@@ -1,0 +1,39 @@
+TEXTURESET espresso3d\testbed\media\textures\textureseta.txt NOJAR
+MODEL
+{
+  BONEGROUP groupA
+  {
+	  ROOTBONE bone1
+	  	0 0 0, bone2;
+	  BONE bone2
+	    10 0 0;
+  }
+      
+  TRIANGLE
+  {
+    VERTICES
+  	  -1 -1 0, 1 1 0, -1 1 0;
+  	BONEATTACHMENT
+  	  groupA bone1, groupA bone1, groupA bone1;
+  	TEXTURE
+	  0 0, 1 1, 0 1, WALL; 
+	TEXTUREDETAIL0
+	  0 0, 1 1, 0 1, TESTIMG;
+	TEXTUREDETAIL1
+	  0 0, 1 1, 0 1, WATER;
+  }
+  
+  TRIANGLE
+  {
+    VERTICES
+	  -1 -1 0, 1 -1 0, 1 1 0;
+	BONEATTACHMENT
+	  groupA bone2, groupA bone2, groupA bone2;
+	TEXTURE
+	  0 0, 1 0, 1 1, TESTIMG;
+	TEXTUREDETAIL0
+	  0 0, 1 0, 1 1, WALL;
+	TEXTUREDETAIL1
+	  0 0, 1 0, 1 1, WATER;
+  }
+}
