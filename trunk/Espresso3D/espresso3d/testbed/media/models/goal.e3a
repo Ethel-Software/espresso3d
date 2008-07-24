@@ -1,6 +1,0 @@
-TEXTURESET espresso3d\testbed\media\textures\textureseta.txt NOJAR
-MODEL
-{
-  TRIANGLE -1 -1 0, 1 -1 0, 1 1 0, 0 0, 1 0, 1 1, TERRAINDETAIL;
-  TRIANGLE -1 -1 0, 1 1 0, -1 1 0, 0 0, 1 1, 0 1, TERRAINDETAIL;
-}
