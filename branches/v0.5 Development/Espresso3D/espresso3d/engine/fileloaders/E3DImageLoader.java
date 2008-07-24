@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 import javax.imageio.ImageIO;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.glu.GLU;
+import org.lwjgl.util.glu.GLU;
 import espresso3d.engine.E3DEngine;
 import espresso3d.engine.exceptions.E3DInvalidFileFormatException;
 import espresso3d.engine.logger.E3DEngineLogger;

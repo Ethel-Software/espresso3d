@@ -170,6 +170,13 @@ public class E3DInputHandler extends E3DEngineItem
 	private E3DMouseButtonHandler mouseButtonHandler;
 	private E3DMouseMovementHandler mouseMovementHandler;
 	
+   /*
+    * When the following is enabled, it stops the library
+    * grabbing the mouse. This allows the mouse to be used
+    * in any IDEs using while doing debugging.
+    * */
+   public static boolean GRAB_MOUSE = false/*true*/;
+   
 	public E3DInputHandler(E3DEngine engine)
 	{
 		super(engine);

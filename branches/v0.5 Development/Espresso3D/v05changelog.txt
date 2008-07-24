@@ -1,9 +1,17 @@
 Espresso3D Version 0.5 changelog (this is not a definitive list)
-
-REQUIRED: OpenGL v2.0 drivers! (check for this in startup)
+REQUIRED: OpenGL v2.0 drivers!, LWJGL 2.0 RC1, Java >= 5 
 
 New Features
 =============
+
+7/23/08:
+-LWJGL 2.0 RC1 Support (NickH)
+-Java 6 Support (NickH)
+-New interface for the GLU projection functions (NickH)
+-Flag to turn off the grabbing of the cursor - useful when debugging from NetBeans (NickH)
+-Changed the function used to access keyboard input - the old way of doing it was inefficient and was causing repeating keys to get stuck as down permanently (NickH)
+
+6/01/08:
 -Fixed billboarding sprites not billboarding correctly problem
 -Added a movementOrientation (getMovementOrientation) to billboardSprites that will keep track of the "true" orientation
  of the sprite instead of the relative (always looking at camera) orientation.  This should probably not use the supers orientation

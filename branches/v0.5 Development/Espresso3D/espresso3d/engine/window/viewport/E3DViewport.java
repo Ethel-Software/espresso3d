@@ -21,6 +21,7 @@
 package espresso3d.engine.window.viewport;
 
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,7 +29,7 @@ import java.util.Map;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.glu.GLU;
+import org.lwjgl.util.glu.GLU;
 
 import espresso3d.engine.E3DEngine;
 import espresso3d.engine.lowlevel.geometry.E3DQuad;
@@ -98,13 +99,12 @@ public class E3DViewport extends E3DRenderable{
 	//For projecting/unprojecting
 	private FloatBuffer modelView;
 	private FloatBuffer projView;
+   private IntBuffer intView;
+   private FloatBuffer winPos;
 
 	//For the new gluLookAt (reimp)
 //	private static FloatBuffer lookAtBuffer;
     
-    private float[][] modelViewArray;
-    private float[][] projViewArray;
-    private int[] intViewArray;
     private boolean needViewArrayRecalc = true;
 
     
@@ -146,12 +146,13 @@ public class E3DViewport extends E3DRenderable{
 		
 		modelView = BufferUtils.createFloatBuffer(16); 
 		projView = BufferUtils.createFloatBuffer(16);
-//	    lookAtBuffer = BufferUtils.createFloatBuffer(16);
-	    
+		   
+		intView = BufferUtils.createIntBuffer(4);
+		winPos = BufferUtils.createFloatBuffer(3);
+		
 	    //Images go on two maps
 	    imageMap = new HashMap();
 	    renderTree = new E3DRenderTree(engine);
-//	    sortedImageMap = new E3DSortedRenderableMap();
 	    
 	    setRenderMode(new E3DRenderMode(engine, RENDERMODE_DEFAULT));
 	    
@@ -555,9 +556,6 @@ public class E3DViewport extends E3DRenderable{
     }
 
 
-    /****** For Projections *****/
-    float[] projArray = new float[3];
-    
     /**
      * Convert a view matrix float buffer into 2D float array
      * @param fb
@@ -598,34 +596,36 @@ public class E3DViewport extends E3DRenderable{
 //    }   
 //    
 
+
     public void recalcProjectionViewMatrix()
     {
 		projView.clear();
-        GL11.glGetFloat(GL11.GL_PROJECTION_MATRIX, projView); //TODO: only do this on perspective change
-        projViewArray = getFloatBufferAs2DArray(projView);
+      GL11.glGetFloat(GL11.GL_PROJECTION_MATRIX, projView); //TODO: only do this on perspective change
     }
 
     public void recalcModelViewMatrix()
     {
 		modelView.clear();
 		GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX, modelView); //TODO: grab right out of the gluLookat
-		modelViewArray = getFloatBufferAs2DArray(modelView);
     }
 
     public void recalcViewportMatrix()
     {
-        intViewArray = new int[]{x, y, width, height}; //getIntBufferAsArray(viewport); //TODO: Use this isntead, its faster
+       intView.put(0,x);
+       intView.put(1,y);
+       intView.put(2,width);
+       intView.put(3,height);
     }
-    
+  
     private void recalcViewMatrices()
     {
-        if(needViewArrayRecalc)		
-        {
-           recalcProjectionViewMatrix();
-           recalcModelViewMatrix();
-           recalcViewportMatrix();
-	       needViewArrayRecalc = false;
-        }
+       if(needViewArrayRecalc)
+       {
+          recalcProjectionViewMatrix();
+          recalcModelViewMatrix();
+          recalcViewportMatrix();
+          needViewArrayRecalc = false;
+       }
     }
 
     /**
@@ -641,9 +641,9 @@ public class E3DViewport extends E3DRenderable{
         recalcViewMatrices();
         
 	    GLU.gluProject((float)point3D.getX(), (float)point3D.getY(), (float)point3D.getZ(),
-	    		modelViewArray, projViewArray, intViewArray, projArray);
+	    		modelView, projView, intView, winPos);
 	    
-	    return new E3DVector3F(projArray[0], projArray[1], projArray[2]);
+	    return new E3DVector3F(winPos.get(0), winPos.get(1), winPos.get(2));
     }
     
     /**
@@ -658,9 +658,9 @@ public class E3DViewport extends E3DRenderable{
         recalcViewMatrices();
         
 	    GLU.gluProject((float)point3D.getX(), (float)point3D.getY(), (float)point3D.getZ(),
-	    		modelViewArray, projViewArray, intViewArray, projArray);
+	    		modelView, projView, intView, winPos);
 	    
-	    return new E3DVector2F(projArray[0], projArray[1]);
+	    return new E3DVector2F(winPos.get(0), winPos.get(1));
     }
 
     /**
@@ -675,11 +675,11 @@ public class E3DViewport extends E3DRenderable{
     {
         recalcViewMatrices();
         GLU.gluUnProject((int)point2D.getX(), (int)point2D.getY(), (float)point2D.getZ(),
-	    		modelViewArray, projViewArray, intViewArray, projArray);
+	    		modelView, projView, intView, winPos);
 	
 //        System.out.println("Unprojecting: " + point2D + " TO " + new E3DVector3F(projArray[0], projArray[1], projArray[2]));
         
-	    return new E3DVector3F(projArray[0], projArray[1], projArray[2]);
+	    return new E3DVector3F(winPos.get(0), winPos.get(1), winPos.get(2));
     }
 
     

@@ -23,6 +23,7 @@ package espresso3d.engine.input;
 import org.lwjgl.input.Mouse;
 
 import espresso3d.engine.input.base.IE3DInputCallback;
+import espresso3d.engine.input.E3DInputHandler;
 
 /**
  * @author Curt
@@ -35,10 +36,11 @@ class E3DMouseMovementHandler {
 	private int x=0, y=0;
 	
 	public E3DMouseMovementHandler(){
-	    Mouse.setGrabbed(false);
+		boolean grabbed = Mouse.isGrabbed();
+		Mouse.setGrabbed(false);
 	    x = Mouse.getEventX();
 	    y = Mouse.getEventY();
-	    Mouse.setGrabbed(true);
+	    Mouse.setGrabbed(grabbed);
 	}
 
 	void bindMouseMovementToHandler(IE3DInputCallback callback)

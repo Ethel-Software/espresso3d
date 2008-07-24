@@ -26,7 +26,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.lwjgl.input.Keyboard;
-
 import espresso3d.engine.input.base.IE3DInputCallback;
 
 /**
@@ -53,10 +52,8 @@ class E3DKeyboardHandler {
 	
     void checkKeyboardInput()
 	{
-		for(int i = 0; i < Keyboard.getNumKeyboardEvents(); i++)
-		{
-			Keyboard.next();
-
+       while(Keyboard.next())
+       {
 			if(Keyboard.getEventKeyState() == true)
 			{
 				Integer key = new Integer(Keyboard.getEventKey());
