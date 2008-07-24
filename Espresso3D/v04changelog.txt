@@ -1,0 +1,62 @@
+Espresso3D Version 0.4 changelog (this is not a definitive list, lots more has changed than this)
+
+New Features
+=============
+-Multi-texturing:  Added ability to add up to 2 additional detail textures to objects that will be blended with the main texture.
+
+-Backface Culling: If desired, backface culling can be enabled by calling engine.setBackfaceCullingEnabled(true/false) 
+
+-Sectors have the isLit and setLit properties now.  If lit is set to false, the sector geometry will be fullbright.
+
+-Added ARB_PointSprite sprites that will take effect whenever the video card running the app supports it.  These are MANY times faster
+ than legacy sprites
+ 
+-2D and 3D sound support with wavefile loading.  Doppler effect will be available in 0.5.
+
+-Added a logger to the engine that defaults to espresso3d.log.  Engine messages are written here and it is accessible from the engine for 
+ your own messages.
+ 
+ 
+
+Fixes/Changes (many more things than this were fixed, this is NOT a definitive list)
+============================================================================
+-E3DTriangle's have been modified to contain E3DTexturedVertex for vertices.  This changed the way actual vertex
+ positions are obtained slightly:  Instead of E3DTriangle.getVertexA(), use E3DTriangle.getVertexPosA(), B, C, etc.
+ getVertexA will now return an actual vertex object.  This was a necessary step to allow multitexturing.
+ 
+-E3DQuad's had the same changes made as E3DTriangle's detailed above.
+
+-Modified actor file format -  Triangle information goes on a separate line AFTER the triangle definition.  This
+ makes it match up exactly to the map file format.  They were inconsistant and I chose to go with the map format.
+ 
+-Improved file loaders - The file loaders didn't cope well with tabs and spacing that wasn't precise to the format,
+ this has been improved so spacing and tabbing should be a lot more flexible in the map and actor files.
+ 
+-Collision detection's checkCollision function got a revamp.  This was necessary to make collision detection
+ much more powerful.  Collision detectors are now completely independent of each other, so new detectors and
+ bounding objects can be added much more easily (before, a detector had to know how to handle every type of
+ bounding object/detector.  This is no longer necessary).
+ 
+-Fixed sprite and particle system/particle collision detection problems.
+
+-isActorLit/setActorLit for an actor was renamed to isLit and setLit.  This standardizes it across sectors and actors
+
+-engine.getCollisionDetect has been renamed to getCollisionHandler. This is to remain consistant with names.
+  There is now an inputHandler, collisionHandler, and soundHandler sub-systems associated with the engine so
+  they should be easier to identify.
+  
+-Position, left, up, forward vectors are not directly accessed from Actors, sprites, etc, any longer.  You must use
+ the orientation object for those (ie: actor.getOrientation().getForward())
+
+-Triangle /Geometry information for objects with getOrientation() methods are now always given in the objects
+ local coordinate system NOT in world coordinates.  To get world coords do a theobject.getOrientation().getWorldVector(vec) 
+ and theobject.getOrientation().getLocalVector(vec) to convert world coords to an objects local coordinate system.
+
+-Actors are defaulted to Lit not without having to explicitly set it.
+
+-onCollisionDuringUpdate for E3DParticle's was changed to have a boolean return type.  This facilitates being able to ignore a collision for 
+ a single particle to keep it moving normally.
+
+-Major speed increases 
+
+-Fixed file loading from a jar problems.  Resources should be located without problems from jars now.
