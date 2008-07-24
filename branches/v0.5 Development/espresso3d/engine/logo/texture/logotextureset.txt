@@ -1,7 +1,0 @@
-ESPRESSO3DLOGO /espresso3d/engine/logo/texture/espresso3dlogo.png;
-REDPLASMAPARTICLE /espresso3d/engine/logo/texture/redparticle.png;
-BLUEPLASMAPARTICLE /espresso3d/engine/logo/texture/blueparticle.png;
-VERDANABOLD /espresso3d/engine/logo/texture/verdanabold.png;
-SPEAKER /espresso3d/engine/logo/texture/speaker.png;
-RECEIVER /espresso3d/engine/logo/texture/receiver.png;
-
